@@ -21,7 +21,12 @@ default: &default
 
 development:
   <<: *default
-  database: myapi_development
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  host: <%= ENV['DATABASE_HOST'] %>
+  port: <%= ENV['DATABASE_PORT'] %>
+
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
@@ -79,6 +84,4 @@ test:
 #
 production:
   <<: *default
-  database: myapi_production
-  username: myapi
-  password: <%= ENV["MYAPI_DATABASE_PASSWORD"] %>
+  
