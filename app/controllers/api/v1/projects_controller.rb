@@ -2,12 +2,12 @@ class Api::V1::ProjectsController < ApplicationController
     before_action :find_project, only: [:show, :update, :destroy]
 def index
     @projects = Project.all
-    render json: @projects
+    render json: @projects, each_serializer:Api::V1::ProjectSerializer
 end
 
 
 def show
-    render json: @project
+    render json: @project, serializer:Api::V1::ProjectSerializer
 end
 
 def create
