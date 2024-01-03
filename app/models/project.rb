@@ -1,4 +1,5 @@
 class Project < ApplicationRecord
+    before_save :add_https_to_links
 
     before_validation :strip_whitespace
 
@@ -11,4 +12,17 @@ class Project < ApplicationRecord
         self.description = description.strip if description.present?
         self.details = details.strip if details.present?
     end
+
+    private
+
+    def add_https_to_links
+        link_attributes = %i[live_preview_link source_code_link]
+    
+        link_attributes.each do |attribute|
+          if send(attribute).present? && !send(attribute).start_with?('http://', 'https://')
+            send("#{attribute}=", "https://#{send(attribute)}")
+          end
+        end
+      end
+
 end
