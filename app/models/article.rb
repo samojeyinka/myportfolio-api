@@ -1,6 +1,6 @@
 class Article < ApplicationRecord
     before_validation :strip_whitespace
-
+    
     validates :title, presence: true
     validates :content, presence:true
 
