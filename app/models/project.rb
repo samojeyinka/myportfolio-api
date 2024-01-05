@@ -14,6 +14,11 @@ class Project < ApplicationRecord
         self.details = details.strip if details.present?
     end
 
+     #For image
+     def image_url
+      Rails.application.routes.url_helpers.url_for(image) if image.attached?
+     end
+
     private
 
     def add_https_to_links

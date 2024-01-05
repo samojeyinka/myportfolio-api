@@ -1,8 +1,10 @@
 class Api::V1::ProjectsController < ApplicationController
     before_action :find_project, only: [:show, :update, :destroy]
+
 def index
     @projects = Project.all
-    render json: @projects, each_serializer:Api::V1::ProjectSerializer
+    render json: Api::V1::ProjectSerializer.new(@projects, is_collection: true).serializable_hash[:data].map { |hash| hash[:attributes] }
+
 end
 
 
@@ -13,7 +15,8 @@ end
 def create
     @project = Project.new(project_params)
     if @project.save
-        render json: @project
+        # render json: @project
+           render json: Api::V1::ProjectSerializer.new(@project).serializable_hash[:data][:attributes], status: :created
     else
         render json: @project.errors.full_messages, status: :unprocessable_entity
     end
