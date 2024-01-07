@@ -3,11 +3,11 @@ class Api::V1::CategoriesController < ApplicationController
 
 def index
     @categories = Category.all
-    render json: @categories
+    render json: @categories, each_serializer:Api::V1::CategorySerializer
 end
 
 def show
-    render json: @category
+    render json: @category, serializer:Api::V1::CategorySerializer
 end
 
 def create
