@@ -3,6 +3,9 @@ class Project < ApplicationRecord
 
     before_validation :strip_whitespace
 
+    has_many :project_categories
+    has_many :categories, through: :project_categories
+
     has_one_attached :image
     validates :name, presence: true, length:{maximum: 100}
     validates :description, presence: true, length:{maximum: 140}

@@ -46,7 +46,7 @@ def find_project
 end   
 
 def project_params
-    params.require(:project).permit(:name, :description, :details, :live_preview_link, :source_code_link, :image)
+    params.require(:project).permit(:name, :description, :details, :live_preview_link, :source_code_link, :image, category_ids:[])
 end
 
 end
