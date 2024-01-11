@@ -9,7 +9,9 @@ end
 
 
 def show
-    render json: @project, serializer:Api::V1::ProjectSerializer
+
+    # render json: @project, serializer:Api::V1::ProjectSerializer
+    render json: Api::V1::ProjectSerializer.new(@project).serializable_hash[:data][:attributes]
 end
 
 def create
