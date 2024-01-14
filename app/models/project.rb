@@ -8,7 +8,7 @@ class Project < ApplicationRecord
 
     has_one_attached :image
     validates :name, presence: true, length:{maximum: 100}
-    validates :description, presence: true, length:{maximum: 140}
+    validates :description, presence: true, length:{maximum: 180}
     validates :details, presence: true
 
     def strip_whitespace

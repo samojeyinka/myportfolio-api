@@ -41,6 +41,15 @@ def destroy
     end
 end
 
+# Latest project
+
+def latest 
+    @project = Project.last
+    # render json: @project
+    render json: Api::V1::ProjectSerializer.new(@project).serializable_hash[:data][:attributes]
+end
+
+
 private
 
 def find_project 

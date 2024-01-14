@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :articles
     resources :projects
     resources :categories
-    
+    get 'latest', to: 'projects#latest'
        end
     end
 end
